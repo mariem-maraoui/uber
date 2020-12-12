@@ -4,7 +4,7 @@ const userSchema=mongoose.Schema({
     tel: {type: Number}, 
     email: {type: String, unique: true}, 
     type: {type: String}, 
-    mdp: {type: String}
+    mot_de_pass: {type: String}
 }
     
     );

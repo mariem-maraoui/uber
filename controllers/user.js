@@ -15,7 +15,7 @@ exports.getUser = (req, res) => {
 };
 
 exports.createUser = (req, res) => {
-    console.log(req.body);
+    //console.log(req.body);
     var user = new User({
         nom : req.body.nom,
         tel : req.body.tel,
@@ -50,6 +50,7 @@ exports.login = (req, res) => {
         if(!user){
             res.status(401).json({message: 'Not Authorized'});
         }
+        else {
         if(req.body.mot_de_pass == user.mot_de_pass){
             res.json({
                 token: jwt.sign(
@@ -62,6 +63,6 @@ exports.login = (req, res) => {
         else {
             res.json({message: 'mot de passe incorrect'});
         }
-        res.json(user)})
+        }})
     .catch(error => res.json({ error }));
 };
