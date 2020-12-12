@@ -3,8 +3,12 @@ const jwt = require('jsonwebtoken');
 
 
 exports.getAllUser = (req, res) => {
-  
-    User.find()
+  var filtre='';
+  if (req.query.filtre) {
+      filtre=req.query.filtre;
+  }
+    User.find( {nom: {$regex: filtre, $options: 'i'}})
+
     .then(users => res.json(users))
     .catch(error => res.json({ error }));
 };
@@ -15,7 +19,7 @@ exports.getUser = (req, res) => {
 };
 
 exports.createUser = (req, res) => {
-    //console.log(req.body);
+    
     var user = new User({
         nom : req.body.nom,
         tel : req.body.tel,
